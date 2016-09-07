@@ -1,0 +1,16 @@
+<% if signed_in? %>
+	<div class="row">
+  	<div class='col s12'>
+    	<h4><%= current_user.first_name %> <%= current_user.last_name %></h4>
+    	<p><%= Faker::Lorem.paragraph %></p>
+    	<%= link_to 'View Profiles', profiles_path %>
+  	</div>
+	</div>
+<% else %>
+  <div class="row space">
+    <div class="col s12 m5 offset-m7">
+      <p class="flow-text right-align"><%= Faker::Lorem.paragraph %></p>
+    </div>
+  </div>
+
+<% end %>

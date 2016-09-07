@@ -1,0 +1,24 @@
+<nav>
+  <div class="nav-wrapper container">
+    <%= link_to 'Dating', root_path, class: "brand-logo"%>
+    <ul class="right">
+      <div class="col s4 push-right">
+        <% if signed_in? %>
+          <li><%= link_to 'Sign-Out', destroy_user_session_path, method: :delete %></li>
+          <% if current_user.profile %>
+            <li><%= link_to 'Edit Your Profile', edit_profile_path(current_user.profile.id) %>
+            <li><%= link_to 'Messages', conversations_path(current_user.profile.id) %>
+          <% else %>
+            <li><%= link_to 'Add Your Profile', new_profile_path(current_user) %>
+          <% end %>
+          <li><%= form_tag(profiles_path, :method => 'get', id: "search_form", class: "black-text") do  %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Profiles" %>
+          <% end %></li>
+        <% else %>
+          <li><%=link_to 'Sign-In', new_user_session_path %></li>
+          <li><%=link_to 'Sign-Up', new_user_registration_path %></li>
+        <% end %>
+      </div>
+    </ul>
+  </div>
+</nav>
